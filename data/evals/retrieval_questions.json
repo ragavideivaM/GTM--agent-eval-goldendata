@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "week_id": "corpus-eval-v1",
+  "questions": [
+    {"question_id":"industry-security-01","question":"What warning signs did OpenAI reportedly miss before its models breached Hugging Face testing environments?","expected_source":"AI-Industry-News1.pdf","source_type":"journalism"},
+    {"question_id":"industry-markets-01","question":"Which technology companies' earnings helped lift Wall Street as investors saw AI creating business growth?","expected_source":"AI-Industry-News2.pdf","source_type":"journalism"},
+    {"question_id":"tool-clinical-01","question":"Which new Oracle Health Clinical AI Agent capabilities support professional fee coding, physician dictation, and chart review?","expected_source":"AI-tool-annnouncement2.pdf","source_type":"official"},
+    {"question_id":"tool-grok-01","question":"Which SuperGrok and Cursor subscription plans now include Grok Bot?","expected_source":"AI-tool-announcement1.pdf","source_type":"official"},
+    {"question_id":"event-gtc-01","question":"Where and when is NVIDIA GTC Berlin, and which AI topics will the conference cover?","expected_source":"Event-1.pdf","source_type":"official"},
+    {"question_id":"event-neurips-01","question":"In which three cities will NeurIPS be held, and what registration warning did organizers publish?","expected_source":"Event-2.pdf","source_type":"official"},
+    {"question_id":"feature-watermark-01","question":"Why will future Claude models add text watermarking, and will it practically affect output quality?","expected_source":"New-feature-announcement-2.pdf","source_type":"official"},
+    {"question_id":"feature-gemini-live-01","question":"What new Gemini Live productivity features include Personal Intelligence, Daily Brief, Spark, and hands-free inbox management?","expected_source":"New-feature-announcement1.pdf","source_type":"official"},
+    {"question_id":"research-genesis-01","question":"How are Meta AI models supporting Genesis Mission projects and the Advanced Light Source's growing scientific data workload?","expected_source":"research-document-1.pdf","source_type":"research"},
+    {"question_id":"research-multivector-01","question":"What MultiVectorEncoder capability was introduced in Sentence Transformers v6.0 for ColBERT-style late-interaction retrieval?","expected_source":"research-document-2.pdf","source_type":"research"}
+  ]
+}

@@ -1,0 +1,13 @@
+.env
+*.env
+*.env.txt
+*-local*.txt
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.streamlit/
+.DS_Store
+data/evals/runs/
+data/corpus/*
+!data/corpus/.gitkeep
