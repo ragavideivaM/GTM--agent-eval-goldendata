@@ -1,6 +1,8 @@
 .env
 *.env
 *.env.txt
+LangsmithAPI.txt
+GTM-Agent-GitHub.zip
 *-local*.txt
 .venv/
 __pycache__/
