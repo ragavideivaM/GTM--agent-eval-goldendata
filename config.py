@@ -24,6 +24,11 @@ class Settings(BaseSettings):
     openai_agent_max_model_calls: int = 6
     openai_agent_recursion_limit: int = 40
 
+    langsmith_tracing: bool = False
+    langsmith_api_key: str = ""
+    langsmith_project: str = "gtm-content-eval"
+    langsmith_endpoint: str = "https://api.smith.langchain.com"
+
     openai_input_cost_per_million: float = 2.50
     openai_output_cost_per_million: float = 15.00
     openai_embedding_cost_per_million: float = 0.02

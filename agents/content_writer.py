@@ -5,6 +5,7 @@ from typing import Protocol
 from openai import OpenAI
 
 from config import Settings
+from evaluations.tracing import trace_child_call
 from models.brief import WeeklyResearchBrief
 from models.campaign import CampaignType
 from models.content import ContentClaim, ContentSuite
@@ -80,13 +81,17 @@ the statement and cites only exact evidence_chunk_ids present in the approved br
 Do not print evidence IDs inside the reader-facing copy. Keep claims and messaging
 consistent across formats. Treat unresolved questions as unavailable facts.
 """.strip()
-        response = self.client.responses.parse(
-            model=self.settings.openai_model,
-            instructions=instructions,
-            input=brief.model_dump_json(indent=2),
-            text_format=ContentSuite,
-            max_output_tokens=self.settings.openai_content_max_output_tokens,
-            store=False,
+        response = trace_child_call(
+            lambda: self.client.responses.parse(
+                model=self.settings.openai_model,
+                instructions=instructions,
+                input=brief.model_dump_json(indent=2),
+                text_format=ContentSuite,
+                max_output_tokens=self.settings.openai_content_max_output_tokens,
+                store=False,
+            ),
+            name="content-writer-openai",
+            inputs={"model": self.settings.openai_model, "brief": brief.model_dump()},
         )
         self.last_usage = response_usage(self.settings, response)
         suite = getattr(response, "output_parsed", None)

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+  <rect width="1200" height="360" fill="#fffdf5"/>
+  <path d="M35 42 C250 31 470 49 680 39 S1010 44 1165 36" fill="none" stroke="#d8c99b" stroke-width="3" stroke-linecap="round"/>
+  <text x="50" y="86" font-family="Comic Sans MS, Marker Felt, cursive" font-size="28" fill="#334155">Topic to LinkedIn post</text>
+  <g font-family="Comic Sans MS, Marker Felt, cursive" fill="#263238">
+    <g transform="rotate(-2 135 190)">
+      <path d="M42 132 Q132 121 228 134 L219 270 Q130 278 38 264 Z" fill="#fff0a8" stroke="#6b6251" stroke-width="3"/>
+      <text x="72" y="177" font-size="22">1. Enter topic</text>
+      <text x="72" y="210" font-size="17">“Research on</text>
+      <text x="72" y="234" font-size="17">OpenAI”</text>
+    </g>
+    <g transform="rotate(2 370 190)">
+      <path d="M274 137 Q372 124 468 139 L461 264 Q370 276 270 260 Z" fill="#d9f2ff" stroke="#596b73" stroke-width="3"/>
+      <text x="300" y="184" font-size="22">2. Search web</text>
+      <text x="300" y="217" font-size="17">Find current</text>
+      <text x="300" y="241" font-size="17">credible sources</text>
+    </g>
+    <g transform="rotate(-1 605 190)">
+      <path d="M510 130 Q608 120 704 134 L696 269 Q602 278 506 263 Z" fill="#e5f5d2" stroke="#63705b" stroke-width="3"/>
+      <text x="535" y="179" font-size="22">3. Inspect sources</text>
+      <text x="535" y="213" font-size="17">Check claims and</text>
+      <text x="535" y="237" font-size="17">source attribution</text>
+    </g>
+    <g transform="rotate(2 840 190)">
+      <path d="M746 136 Q842 124 940 140 L931 263 Q840 276 742 259 Z" fill="#f8d9df" stroke="#785e64" stroke-width="3"/>
+      <text x="772" y="183" font-size="21">4. Write post</text>
+      <text x="772" y="216" font-size="17">Grounded LinkedIn</text>
+      <text x="772" y="240" font-size="17">content</text>
+    </g>
+    <g transform="rotate(-2 1060 190)">
+      <path d="M970 139 Q1062 127 1156 141 L1149 261 Q1060 273 966 258 Z" fill="#e4d9fa" stroke="#695e7c" stroke-width="3"/>
+      <text x="995" y="183" font-size="21">5. Download</text>
+      <text x="995" y="216" font-size="17">JSON output</text>
+    </g>
+  </g>
+  <g fill="none" stroke="#4b5563" stroke-width="4" stroke-linecap="round">
+    <path d="M232 200 C246 188 255 188 270 200"/>
+    <path d="M260 191 L272 200 L259 207"/>
+    <path d="M470 200 C484 188 495 188 510 200"/>
+    <path d="M498 191 L510 200 L497 207"/>
+    <path d="M706 200 C720 188 730 188 746 200"/>
+    <path d="M734 191 L746 200 L733 207"/>
+    <path d="M942 200 C954 188 957 188 970 200"/>
+    <path d="M958 191 L970 200 L957 207"/>
+  </g>
+  <text x="52" y="326" font-family="Comic Sans MS, Marker Felt, cursive" font-size="17" fill="#64748b">A small, evidence-first workflow for the evaluation demo</text>
+</svg>

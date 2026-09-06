@@ -1,0 +1,33 @@
+USER INTERFACE
+└── Streamlit app.py
+    Welcome | Generate | Full Goto Content | Debug
+
+SOURCE COLLECTION
+├── Web discovery
+├── PDF upload
+├── Excel upload
+└── Human source approval
+
+RAG PIPELINE
+├── service.py
+├── chunker.py
+├── embeddings.py
+├── Pinecone
+├── retrieval.py
+└── brief_builder.py
+
+AGENT WORKFLOW
+├── Deep Agent
+├── Approval-aware tools
+├── Main Agent
+├── Content Writer
+└── Review Agent
+
+OUTPUT AND APPROVAL
+├── LinkedIn
+├── Email
+├── Blog
+├── Ads
+├── Human feedback
+├── Final approval
+└── JSON export

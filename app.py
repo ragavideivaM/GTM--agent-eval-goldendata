@@ -3,6 +3,7 @@
 from base64 import b64encode
 from datetime import date, timedelta
 from hashlib import sha256
+import json
 from pathlib import Path
 
 import streamlit as st
@@ -11,9 +12,11 @@ from agents.content_writer import ContentSuiteGenerator
 from agents.deep_runtime import create_deep_gtm_agent
 from agents.main_agent import GTMMainAgent
 from agents.reviewer import ContentReviewAgent
+from agents.topic_linkedin import TopicLinkedInGenerator
 from agents.tool_adapters import AgentWorkspace, complete_skipped_agent_steps
 from config import Settings, get_settings
 from evaluations.bundle import save_evaluation_bundle
+from evaluations.tracing import trace_eval_case
 from ingestion.service import IngestionInput, ingest_excel, ingest_pdf
 from ingestion.chunker import ChunkingConfig
 from models.brief import WeeklyResearchBrief
@@ -420,6 +423,64 @@ def _render_review(result: ReviewedContentSuite) -> None:
             st.write(f"- {revision}")
 
 
+def _render_topic_linkedin(settings: Settings) -> None:
+    """Render the standalone topic-to-LinkedIn evaluation path."""
+    st.subheader("Quick LinkedIn post from a topic")
+    st.caption(
+        "Search current web sources for one topic and download a grounded LinkedIn post as JSON."
+    )
+    topic = st.text_input(
+        "Topic",
+        placeholder="Research on OpenAI",
+        key="topic-linkedin-input",
+    )
+    if st.button(
+        "Search and generate LinkedIn post",
+        type="primary",
+        disabled=not bool(settings.openai_api_key),
+        key="generate-topic-linkedin",
+    ):
+        if not topic.strip():
+            st.warning("Enter a topic first.")
+        else:
+            with st.spinner("Searching current sources and drafting the post..."):
+                try:
+                    generator = TopicLinkedInGenerator(settings)
+                    topic_key = sha256(topic.strip().encode("utf-8")).hexdigest()[:12]
+                    result = trace_eval_case(
+                        lambda: generator.generate(topic),
+                        settings=settings,
+                        case_id=f"topic-{topic_key}",
+                        dataset_version="gtm-topic-linkedin-v1",
+                        run_name="topic-linkedin-generation",
+                        prompt_version="topic-linkedin-v1",
+                        inputs={"topic": topic.strip()},
+                        expected_output={"format": "LinkedIn post"},
+                        content_format="linkedin",
+                    )
+                    st.session_state.topic_linkedin_result = result.model_dump()
+                    st.session_state.topic_linkedin_usage = generator.last_usage
+                except Exception as exc:
+                    st.error(f"Topic LinkedIn generation failed: {exc}")
+
+    result = st.session_state.get("topic_linkedin_result")
+    if not result:
+        return
+    st.success("LinkedIn post generated.")
+    st.text_area("Generated LinkedIn post", result["post"], height=260)
+    st.write("**Sources inspected**")
+    for source in result["sources"]:
+        st.write(f"- {source}")
+    st.download_button(
+        "Download LinkedIn post JSON",
+        data=json.dumps(result, indent=2),
+        file_name="topic-linkedin-post.json",
+        mime="application/json",
+        key="download-topic-linkedin-json",
+    )
+    _render_usage("Topic LinkedIn generation", st.session_state.get("topic_linkedin_usage"))
+
+
 def _render_uploads(settings: Settings) -> None:
     """Parse, preview, and optionally index user-provided source files."""
     st.subheader("Choose your content input")
@@ -434,6 +495,7 @@ def _render_uploads(settings: Settings) -> None:
         key="content-input-type",
         help="This choice guides the research brief, output messaging, and CTA.",
     )
+    _render_topic_linkedin(settings)
     st.subheader("Bring your own sources")
     uploads = st.file_uploader(
         "Upload PDF or Excel files",
